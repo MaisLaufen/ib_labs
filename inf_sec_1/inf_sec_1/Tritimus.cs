@@ -64,5 +64,35 @@ namespace tritimus
             }
             return new string(decryptedWord);
         }
+
+        public string encryptPolyTritimus(string word, string key, int jIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string decryptPolyTritimus(string word, string key, int jIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string encryptSBlockTritimus(string word, string key, int jIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string decryptSBlockTritimus(string word, string key, int jIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string encryptImproveBlock(string blockIn, string keyIn, int jIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string decryptImproveBlock(string blockIn, string keyIn, int jIn)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
