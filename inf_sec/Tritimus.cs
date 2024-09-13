@@ -24,16 +24,15 @@ namespace inf_sec
         {
             Console.WriteLine(_alphLen +" " + alphabet.Count());
             int index = alphabet.IndexOf(letter);
-            if (index + _shift >= _alphLen) index = index + _shift - _alphLen - 1;
-            else index = index + _shift;
+            index = (index + _shift) % _alphLen;
             return alphabet[index];
         }
 
         public char decryptTheChar(char encryptedChar, List<char> alphabet)
         {
             int index = alphabet.IndexOf(encryptedChar);
-            if (index - _shift < 0) index = _alphLen - index + _shift;
-            else index = index - _shift;
+            index = Math.Abs((index - _shift) % _alphLen);
+
             return alphabet[index];
         }
 
