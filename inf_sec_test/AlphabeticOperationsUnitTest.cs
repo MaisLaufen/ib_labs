@@ -4,61 +4,44 @@ namespace inf_sec_test
 {
     public class AlphabetOperationTests
     {
-        [Fact]
-        public void GetBinaryCode_O_ShouldBeEqual_15()
+        [Theory]
+        [InlineData('О', 15)]
+        [InlineData('Ж', 7)]
+        public void GetBinaryCode_ShouldBeEqual(char input, uint expected)
         {
             var alphabet = new AlphabetOperations();
-            var result = alphabet.getBinaryCode('О');
-            Assert.Equal((uint)(15), result);
+            var result = alphabet.getBinaryCode(input);
+            Assert.Equal(expected, result);
         }
-        [Fact]
-        public void GetBinaryCode_J_ShouldBeEqual_7()
+
+        [Theory]
+        [InlineData(7, 'Ж')]
+        [InlineData(14, 'Н')]
+        public void GetChar_ShouldBeEqual(uint input, char expected)
         {
             var alphabet = new AlphabetOperations();
-            var result = alphabet.getBinaryCode('Ж');
-            Assert.Equal((uint)(7), result);
+            var result = alphabet.getChar(input);
+            Assert.Equal(expected, result);
         }
-        [Fact]
-        public void GetChar_7_ShouldBeEqual_J ()
+
+        [Theory]
+        [InlineData('Я', 'Ж', 'Е')]
+        [InlineData('Е', 'Ж', 'М')]
+        public void GetSum_ShouldBeEqual(char char1, char char2, char expected)
         {
             var alphabet = new AlphabetOperations();
-            var result = alphabet.getChar(7);
-            Assert.Equal('Ж', result);
+            var result = alphabet.getSum(char1, char2);
+            Assert.Equal(expected, result);
         }
-        [Fact]
-        public void GetChar_14_ShouldBeEqual_H()
+
+        [Theory]
+        [InlineData('Е', 'Ж', 'Я')]
+        [InlineData('Е', 'М', 'Ж')]
+        public void GetDiff_ShouldBeEqual(char char1, char char2, char expected)
         {
             var alphabet = new AlphabetOperations();
-            var result = alphabet.getChar(14);
-            Assert.Equal('Н', result);
-        }
-        [Fact]
-        public void GetSum_YA_Plus_J_ShouldBeEqual_E()
-        {
-            var alphabet = new AlphabetOperations();
-            var result = alphabet.getSum('Я','Ж');
-            Assert.Equal('Е', result);
-        }
-        [Fact]
-        public void GetSum_E_Plus_J_ShouldBeEqual_M()
-        {
-            var alphabet = new AlphabetOperations();
-            var result = alphabet.getSum('Е', 'Ж');
-            Assert.Equal('М', result);
-        }
-        [Fact]
-        public void GetDiff_E_Minus_J_ShouldBeEqual_YA()
-        {
-            var alphabet = new AlphabetOperations();
-            var result = alphabet.getDiff('Е', 'Ж');
-            Assert.Equal('Я', result);
-        }
-        [Fact]
-        public void GetDiff_E_Minus_M_ShouldBeEqual_J()
-        {
-            var alphabet = new AlphabetOperations();
-            var result = alphabet.getDiff('Е', 'М');
-            Assert.Equal('Ж', result);
+            var result = alphabet.getDiff(char1, char2);
+            Assert.Equal(expected, result);
         }
     }
 }
