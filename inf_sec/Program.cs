@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static alphabet.AlphabetOperations;
-using tritimus;
+﻿using System.Collections;
 
-namespace inf_sec_1
+namespace inf_sec;
+
+static class Program
 {
-    internal class Program
-    {
         struct Symbol
         {
             public char symbol;
@@ -28,9 +20,15 @@ namespace inf_sec_1
 
             Console.WriteLine();
             string b = tritimus.encryptTheWord("ПОЛДЕНЬ", alp);
+            string d = tritimus.encryptPolyTritimus("ПОЛДЕНЬ", "ВЕРСАЛЬ");
+            string c = tritimus.decryptPolyTritimus("ЩШЙОДЧК", "ВЕРСАЛЬ");
+            string gg = tritimus.encryptSBlockTritimus("ГРОТ", "РОЗА", 0);
+            string kk = tritimus.encryptSBlockTritimus("АТОЛ", "ГОРАЦИО", 3);
+            string ff = tritimus.decryptImproveBlock("ЬООЫ", "ГОРАЦИО", 3);
+            string jj = tritimus.encryptSTritimusM("КРОТ", "РОЗА", 0);
             Console.Write(b);
             
             Console.Read();
         }
-    }
+    
 }

@@ -1,6 +1,6 @@
-﻿using tritimus;
+using inf_sec;
 
-namespace inf_sec_1_test
+namespace inf_sec_test
 {
     public class TritimusUnitTest
     {

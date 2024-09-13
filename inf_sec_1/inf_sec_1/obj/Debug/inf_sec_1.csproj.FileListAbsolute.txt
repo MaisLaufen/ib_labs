@@ -1,7 +1,0 @@
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\obj\Debug\inf_sec_1.csproj.AssemblyReference.cache
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\obj\Debug\inf_sec_1.csproj.CoreCompileInputs.cache
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\bin\Debug\inf_sec_1.exe.config
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\bin\Debug\inf_sec_1.exe
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\bin\Debug\inf_sec_1.pdb
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\obj\Debug\inf_sec_1.exe
-C:\Users\herz\Desktop\1\ISec\ib_labs\inf_sec_1\inf_sec_1\obj\Debug\inf_sec_1.pdb

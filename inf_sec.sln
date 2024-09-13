@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inf_sec", "inf_sec\inf_sec.csproj", "{41A5ED7E-E69D-4276-B099-39D6AEA64EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inf_sec_test", "inf_sec_test\inf_sec_test.csproj", "{7DC92018-301B-4FEB-8546-64F273885B99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41A5ED7E-E69D-4276-B099-39D6AEA64EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A5ED7E-E69D-4276-B099-39D6AEA64EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A5ED7E-E69D-4276-B099-39D6AEA64EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A5ED7E-E69D-4276-B099-39D6AEA64EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC92018-301B-4FEB-8546-64F273885B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC92018-301B-4FEB-8546-64F273885B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC92018-301B-4FEB-8546-64F273885B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC92018-301B-4FEB-8546-64F273885B99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

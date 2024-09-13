@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace interfaces
+namespace inf_sec
 {
     interface IAlphabetOperations 
     {
@@ -12,6 +6,8 @@ namespace interfaces
         char getChar(uint binaryCode);
         char getSum(char X, char Y);
         uint getDiff(char X, char Y);
+        uint[] textToArray(string txtIn);
+        string arrayToText(uint[] arrIn);
     }
 
     interface ITritimus 
@@ -21,11 +17,14 @@ namespace interfaces
         char decryptTheChar(char encryptedChar, List<char> alphabet);
         string encryptTheWord(string word, List<char> alphabet);
         string decryptTheWord(string encryptedWord, List<char> alphabet);
-        string encryptPolyTritimus(string word, string key, int jIn);
-        string decryptPolyTritimus(string word, string key, int jIn);
-        string encryptSBlockTritimus(string word, string key, int jIn);
-        string decryptSBlockTritimus(string word, string key, int jIn);
+        List<char> shiftTable(List<char> alphabet,int k);
+        string encryptPolyTritimus(string word, string key);
+        string decryptPolyTritimus(string word, string key);
+        string encryptSBlockTritimus(string blockIn, string keyIn, int jIn);
+        string decryptSBlockTritimus(string blockIn, string keyIn, int jIn);
         string encryptImproveBlock(string blockIn, string keyIn, int jIn);
         string decryptImproveBlock(string blockIn, string keyIn, int jIn);
+        string encryptSTritimusM(string blockIn, string keyIn, int jIn);
+        string decryptSTritimusM(string blockIn, string keyIn, int jIn);
     }
 }

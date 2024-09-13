@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using interfaces;
-
-namespace alphabet
+namespace inf_sec
 {
     class Symbol
     {
@@ -23,17 +14,20 @@ namespace alphabet
     public class AlphabetOperations : IAlphabetOperations
     {
         static string alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ_";
+        Tritimus tritimus = new Tritimus(alphabet, 8);
         public uint getBinaryCode(char letter) 
         {
             for (uint i = 0; i < alphabet.Length; i++)
             {
-                if (alphabet[(int)i] == letter) return i+1;
+                if (i == 31) return 0;
+                if (alphabet[(int)i] == letter) return (i+1);
             }
             return 0;
         }
 
         public char getChar(uint binaryCode)
         {
+            if (binaryCode == 0) return '_';
             return alphabet[(int)binaryCode-1];
         }
         
@@ -72,6 +66,26 @@ namespace alphabet
             {
                 return alphabet[alphabet.Length + diff];
             }
+        }
+
+        public uint[] textToArray(string txtIn)
+        {
+            uint[] output = new uint[txtIn.Length];
+            for (int i = 0; i < txtIn.Length; i++)
+            {
+                output[i] = getBinaryCode(txtIn[i]);
+            }
+            return output;
+        }
+
+        public string arrayToText(uint[] arrIn)
+        {
+            char[] output = new char[arrIn.Length];
+            for (int i = 0; i < arrIn.Length; i++)
+            {
+                output[i] = getChar(arrIn[i]);
+            }
+            return new string(output);
         }
     }
 }
