@@ -72,26 +72,42 @@ namespace inf_sec_test
         [Theory]
         [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БЛОК", 11, "МФЙУ")]
         [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БРО", 11, "input_error")]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 11, "БЛОК")]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 3, "БКОЙ")]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
         public void EncryptSBlockTritimus(string key, string input, int jin, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);
             var res = tritimus.encryptSBlockTritimus(input, key, jin);
             Assert.Equal(expected, res);
         }
-
+        
+        [Theory]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 11, "БЛОК")]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 3, "БКОЙ")]    
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
+        public void DecryptSBlockTritimus(string key, string input, int jin, string expected)
+        {
+            var tritimus = new Tritimus(origAlphabet, SHIFT);
+            var res = tritimus.decryptSBlockTritimus(input, key, jin);
+            Assert.Equal(expected, res);
+        }
+        
         [Theory]
         [InlineData("ГОРАЦИО", "АТОЛ", 2, "ЬООЫ")]
         [InlineData("ГОРАЦИО", "АТОЛ", 3, "АУВО")]
-        [InlineData("ГОРАЦИО", "ЬООЫ", 2, "АТОЛ")]
-        [InlineData("ГОРАЦИО", "АУВО", 3, "АТОЛ")]
-        [InlineData("ГОРАЦИО", "ЬООЫ", 3, "ЬТ_Л")]
         public void EncryptImproveBlock(string key, string input, int jin, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);
             var res = tritimus.encryptImproveBlock(input, key, jin);
+            Assert.Equal(expected, res);
+        }
+        
+        [Theory]
+        [InlineData("ГОРАЦИО", "ЬООЫ", 2, "АТОЛ")]
+        [InlineData("ГОРАЦИО", "АУВО", 3, "АТОЛ")]
+        [InlineData("ГОРАЦИО", "ЬООЫ", 3, "ЬТ_Л")]
+        public void DecryptImproveBlock(string key, string input, int jin, string expected)
+        {
+            var tritimus = new Tritimus(origAlphabet, SHIFT);
+            var res = tritimus.decryptImproveBlock(input, key, jin);
             Assert.Equal(expected, res);
         }
 

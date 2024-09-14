@@ -31,8 +31,8 @@ namespace inf_sec
         public char decryptTheChar(char encryptedChar, List<char> alphabet)
         {
             int index = alphabet.IndexOf(encryptedChar);
-            index = Math.Abs((index - _shift) % _alphLen);
-
+            index = (index - _shift) % _alphLen;
+            if (index < 0) index += _alphLen;
             return alphabet[index];
         }
 
