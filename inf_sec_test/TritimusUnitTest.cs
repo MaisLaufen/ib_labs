@@ -46,7 +46,10 @@ namespace inf_sec_test
 
         [Theory]
         [InlineData("А", 0, "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ_")]
+        [InlineData("А", 1, "_АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ")]
         [InlineData("А", 2, "А_БВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ")]
+        [InlineData("А", 3, "АБ_ВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ")]
+        [InlineData("А", 4, "АБВ_ГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ")]
         public void ShiftTable(string key, int step, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);

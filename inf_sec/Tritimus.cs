@@ -1,6 +1,6 @@
 namespace inf_sec
 {
-    public class Tritimus: ITritimus
+    public class Tritimus : ITritimus
     {
         string _origAlph = "";
         int _alphLen = 0;
@@ -22,7 +22,7 @@ namespace inf_sec
 
         public char encryptTheChar(char letter, List<char> alphabet)
         {
-            Console.WriteLine(_alphLen +" " + alphabet.Count());
+            Console.WriteLine(_alphLen + " " + alphabet.Count());
             int index = alphabet.IndexOf(letter);
             index = (index + _shift) % _alphLen;
             return alphabet[index];
@@ -44,6 +44,7 @@ namespace inf_sec
             {
                 encryptedWord[i] = encryptTheChar(word[i], alphabet);
             }
+
             return new string(encryptedWord);
         }
 
@@ -55,13 +56,20 @@ namespace inf_sec
             {
                 decryptedWord[i] = decryptTheChar(word[i], alphabet);
             }
+
             return new string(decryptedWord);
         }
 
-        public List<char> shiftTable(List<char> alphabet,int k)
+        public List<char> shiftTable(List<char> alphabet, int k)
         {
-            alphabet.Insert(k, alphabet[_alphLen - 1]);
-            return alphabet;
+            if (k <= 0) return alphabet;
+            string alpString = String.Join("", alphabet.ToArray());
+
+            string s = alpString.Substring(31, 1);
+            string head = alpString.Substring(0, k - 1);
+            string tale = alpString.Substring(k - 1, 32 - k);
+
+            return String.Concat(head, s, tale).ToList();
         }
 
         public string encryptPolyTritimus(string word, string key)
@@ -73,7 +81,7 @@ namespace inf_sec
             for (int i = 0; i < wordLen; i++)
             {
                 encryptedWord[i] = encryptTheChar(word[i], modifAlph);
-                modifAlph = shiftTable(modifAlph, ((i+1)% wordLen)%_alphLen);
+                modifAlph = shiftTable(modifAlph, ((i + 1) % wordLen) % _alphLen);
             }
 
             return new string(encryptedWord);
@@ -149,7 +157,7 @@ namespace inf_sec
                 int t = (jIn + i) % 32;
                 keyTable = shiftTable(keyTable, t);
                 int pos = keyTable.IndexOf(tmp);
-                char csym = keyTable[(32  + pos - 8) % 32];
+                char csym = keyTable[(32 + pos - 8) % 32];
                 output += csym;
             }
 
@@ -161,8 +169,9 @@ namespace inf_sec
             string t = keyIn;
             while (jIn > t.Length - 4)
             {
-                t += t; 
+                t += t;
             }
+
             AlphabetOperations op = new AlphabetOperations();
 
             string key = t.Substring(jIn, 4);
@@ -181,6 +190,7 @@ namespace inf_sec
 
             return op.arrayToText(b);
         }
+
         public string encryptSTritimusM(string blockIn, string keyIn, int jIn)
         {
             string tmp = encryptSBlockTritimus(blockIn, keyIn, jIn);
@@ -195,6 +205,7 @@ namespace inf_sec
             {
                 t += t;
             }
+
             AlphabetOperations op = new AlphabetOperations();
 
             string key = t.Substring(jIn, 4);
