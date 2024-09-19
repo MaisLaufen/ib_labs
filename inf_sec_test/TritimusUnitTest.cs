@@ -111,15 +111,84 @@ namespace inf_sec_test
             Assert.Equal(expected, res);
         }
 
-        [Fact]
-        public void EncryptSTritimusM()
+        [Theory]
+        [InlineData("ТОРК", "РОЗА", "ЭЖМБ")]
+        [InlineData("РОКТ", "РОЗА", "ЭЖЬЦ")]
+        public void EncryptSTritimusM(string input, string k, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);
-            const string K = "РОЗА";
-            const string OUT = "ЭЖМБ";
-            const string IN = "ТОРК";
-            var res = tritimus.encryptSTritimusM(IN, K, 0);
-            Assert.Equal(OUT, res);
+            var res = tritimus.encryptSTritimusM(input, k, 0);
+            Assert.Equal(expected, res);
+        }
+
+
+        [Fact]
+        public void generalTest()
+        {
+            var block_in1 = "КРОТ";
+            var block_in2 = "КРУТ";
+            var block_in3 = "ТОРК";
+            var block_in4 = "РОКТ";
+            var block_in5 = "ГРОТ";
+
+            var key1 = "РОЗА";
+            var key2 = "ЯДРО";
+            
+            var tritimus = new Tritimus(origAlphabet, SHIFT);
+
+            // Последовательность операций
+            var tst1 = tritimus.encryptSBlockTritimus(block_in1, key1, 0);
+            var tst12 = tritimus.encryptSBlockTritimus(tst1, key2, 0);
+            var tst122 = tritimus.decryptSBlockTritimus(tst12, key2, 0);
+            var tst1221 = tritimus.decryptSBlockTritimus(tst122, key1, 0);
+            Assert.Equal(block_in1, tst1221);
+            
+            var tst121 = tritimus.decryptSBlockTritimus(tst12, key1, 0);
+            var tst1212 = tritimus.decryptSBlockTritimus(tst121, key2, 0);
+            Assert.Equal("КШЯС", tst1212);
+
+            // Последовательность операций (с доп операцией)
+            var tste1 = tritimus.encryptSTritimusM(block_in1, key1, 0);
+            var tste12 = tritimus.encryptSTritimusM(tste1, key2, 0);
+            var tste122 = tritimus.decryptSTritimusM(tste12, key2, 0);
+            var tste1221 = tritimus.decryptSTritimusM(tste122, key1, 0);
+            Assert.Equal(block_in1, tste1221); // dont pass
+            
+            var tste121 = tritimus.decryptSTritimusM(tste12, key1, 0);
+            var tste1212 = tritimus.decryptSTritimusM(tste121, key2, 0);
+            Assert.Equal("РХДС", tste1212); // dont pass
+            
+            // Перестановка в блоке
+            tst1 = tritimus.encryptSBlockTritimus(block_in1, key1, 0);
+            var tst2 = tritimus.encryptSBlockTritimus(block_in3, key1, 0);
+            var tst3 = tritimus.encryptSBlockTritimus(block_in4, key1, 0);
+            Assert.Equal("ФЕЖЫ", tst1);
+            Assert.Equal("ЫЖЕФ", tst2);
+            Assert.Equal("ЕЖФЫ", tst3);
+            
+            // Перестановка в блоке (с доп операцией)
+            tste1 = tritimus.encryptSTritimusM(block_in1, key1, 0);
+            var tste2 = tritimus.encryptSTritimusM(block_in3, key1, 0);
+            var tste3 = tritimus.encryptSTritimusM(block_in4, key1, 0);
+            Assert.Equal("ЭЕМЗ", tste1);
+            Assert.Equal("ЭЖМБ", tste2);
+            Assert.Equal("ЭЖЬЦ", tste3);
+            
+            // Замена символа в блоке
+            tst1 = tritimus.encryptSBlockTritimus(block_in1, key1, 0);
+            tst2 = tritimus.encryptSBlockTritimus(block_in2, key1, 0);
+            tst3 = tritimus.encryptSBlockTritimus(block_in5, key1, 0);
+            Assert.Equal("ФЕЖЫ", tst1);
+            Assert.Equal("ФЕЬЫ", tst2);
+            Assert.Equal("МЕЖЫ", tst3);
+            
+            /* В методичке скипнуто (код из цезаря в блоке тритимуса)  */
+            //tste1 = tritimus.encryptSTritimusM(block_in1, key1, 0);
+            //tste2 = tritimus.encryptSTritimusM(block_in2, key1, 0);
+            //tste3 = tritimus.encryptSTritimusM(block_in5, key1, 0);
+            //Assert.Equal("ЭЕМЗ", tste1);
+            //Assert.Equal("СЕБЭ", tste2);
+            //Assert.Equal("ФЕМЗ", tste3);
         }
     }
 }

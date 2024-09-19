@@ -5,7 +5,7 @@ namespace inf_sec
         uint getBinaryCode(char letter);
         char getChar(uint binaryCode);
         char getSum(char X, char Y);
-        uint getDiff(char X, char Y);
+        char getDiff(char X, char Y);
         uint[] textToArray(string txtIn);
         string arrayToText(uint[] arrIn);
     }
