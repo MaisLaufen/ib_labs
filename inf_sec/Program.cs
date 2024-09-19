@@ -19,13 +19,8 @@ static class Program
             List<char> alp = tritimus.getModifiedAlphabet("ВЕРСАЛЬ");
 
             Console.WriteLine();
-            string b = tritimus.encryptTheWord("ПОЛДЕНЬ", alp);
-            string d = tritimus.encryptPolyTritimus("ПОЛДЕНЬ", "ВЕРСАЛЬ");
-            string c = tritimus.decryptPolyTritimus("ЩШЙОДЧК", "ВЕРСАЛЬ");
-            string gg = tritimus.encryptSBlockTritimus("ГРОТ", "РОЗА", 0);
-            string kk = tritimus.encryptSBlockTritimus("АТОЛ", "ГОРАЦИО", 3);
-            string ff = tritimus.decryptImproveBlock("ЬООЫ", "ГОРАЦИО", 3);
-            string jj = tritimus.encryptSTritimusM("КРОТ", "РОЗА", 0);
+            string b = tritimus.encryptSBlockTritimus("БЛОК", "ЗВЁЗДНАЯ_НОЧЬ", 11);
+
             Console.Write(b);
             
             Console.Read();

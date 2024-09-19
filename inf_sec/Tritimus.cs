@@ -15,7 +15,8 @@ namespace inf_sec
 
         public List<char> getModifiedAlphabet(string key)
         {
-            List<char> newAlph = (key + _origAlph).Distinct().ToList();
+            string result = new string(key.Where(c => _origAlph.Contains(c)).ToArray());
+            List<char> newAlph = (result + _origAlph).Distinct().ToList();
             Console.WriteLine(new string(newAlph.ToArray()));
             return newAlph;
         }
@@ -149,6 +150,12 @@ namespace inf_sec
                     keyTable = shiftTable(keyTable, j);
                 }
             }
+
+            foreach (var item in keyTable)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
 
             string output = "";
             for (int i = 0; i < 4; i++)

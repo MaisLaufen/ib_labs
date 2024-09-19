@@ -70,8 +70,8 @@ namespace inf_sec_test
         }
 
         [Theory]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БЛОК", 11, "МФЙУ")]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БРО", 11, "input_error")]
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БЛОК", 11, "МФЙУ")]
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БРО", 11, "input_error")]
         public void EncryptSBlockTritimus(string key, string input, int jin, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);
@@ -80,9 +80,9 @@ namespace inf_sec_test
         }
         
         [Theory]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 11, "БЛОК")]
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "МФЙУ", 3, "БКОЙ")]    
-        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "МФЙУ", 11, "БЛОК")]
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "МФЙУ", 3, "БКОЙ")]    
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
         public void DecryptSBlockTritimus(string key, string input, int jin, string expected)
         {
             var tritimus = new Tritimus(origAlphabet, SHIFT);
