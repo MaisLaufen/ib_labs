@@ -36,7 +36,7 @@ namespace inf_sec_test
 
         [Theory]
         [InlineData('Е', 'Ж', 'Я')]
-        [InlineData('Е', 'М', 'Ж')]
+        [InlineData('М', 'Е', 'Ж')]
         public void GetDiff_ShouldBeEqual(char char1, char char2, char expected)
         {
             var alphabet = new AlphabetOperations();

@@ -31,41 +31,22 @@ namespace inf_sec
             return alphabet[(int)binaryCode-1];
         }
         
-        public char getSum(char X, char Y)
+        public char getSum(char x, char y)
         {
-            int n1 = 0;
-            int n2 = 0;
-
-            for (int i = 0; i < alphabet.Length; i++)
-            {
-                if (alphabet[i] == X){n1 = i+1;}
-                else if (alphabet[i] == Y) { n2 = i+1; }
-            }
-
-            int sum = n1 + n2;
+            int xIndex = alphabet.IndexOf(x);
+            int yIndex = alphabet.IndexOf(y);
+            int sum = (xIndex + 1) + (yIndex + 1);
             int index = sum % alphabet.Length;
-
-            return alphabet[index];
+            return alphabet[index-1];
         }
 
-        public uint getDiff(char X, char Y)
+        public char getDiff(char x, char y)
         {
-            int n1 = 0;
-            int n2 = 0;
-
-            for (int i = 0; i < alphabet.Length; i++)
-            {
-                if (alphabet[i] == X) { n1 = i + 1; }
-                else if (alphabet[i] == Y) { n2 = i + 1; }
-            }
-
-            int diff = n1 - n2;
-
-            if (diff >= 0) return alphabet[diff];
-            else
-            {
-                return alphabet[alphabet.Length + diff];
-            }
+            int xIndex = alphabet.IndexOf(x);
+            int yIndex = alphabet.IndexOf(y);
+            int diff = (xIndex - yIndex);
+            if (diff < 0) return alphabet[alphabet.Length + diff - 1];
+            return alphabet[xIndex - diff + 1];
         }
 
         public uint[] textToArray(string txtIn)
