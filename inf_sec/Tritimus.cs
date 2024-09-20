@@ -123,7 +123,7 @@ namespace inf_sec
             string output = "";
             for (int i = 0; i < 4; i++)
             {
-                char tmp = blockIn.Substring(i, 1)[0];
+                char tmp = blockIn[i];
                 int t = (jIn + i) % 32;
                 keyTable = shiftTable(keyTable, t);
                 int pos = keyTable.IndexOf(tmp);
@@ -160,7 +160,7 @@ namespace inf_sec
             string output = "";
             for (int i = 0; i < 4; i++)
             {
-                char tmp = blockIn.Substring(i, 1)[0];
+                char tmp = blockIn[i];
                 int t = (jIn + i) % 32;
                 keyTable = shiftTable(keyTable, t);
                 int pos = keyTable.IndexOf(tmp);
@@ -234,9 +234,8 @@ namespace inf_sec
 
         public string decryptSTritimusM(string blockIn, string keyIn, int jIn)
         {
-            string tmp = decryptSBlockTritimus(blockIn, keyIn, jIn);
-            string output = decryptImproveBlock(tmp, keyIn, jIn);
-            return output;
+            string tmp = decryptImproveBlock(blockIn, keyIn, jIn);
+            return decryptSBlockTritimus(tmp, keyIn, jIn);
         }
     }
 }
