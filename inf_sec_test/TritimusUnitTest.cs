@@ -89,7 +89,18 @@ namespace inf_sec_test
             var res = tritimus.decryptSBlockTritimus(input, key, jin);
             Assert.Equal(expected, res);
         }
-        
+
+        [Theory]
+        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БЛОК", 3 )]
+        [InlineData("ФЫВЦУ", "БЛОК", 5 )]
+        public void EncryptDecryptSBlockTritimus(string key, string input, int jin)
+        {
+            var tritimus = new Tritimus(origAlphabet, SHIFT);
+            var encrypt = tritimus.encryptSBlockTritimus(input, key, jin);
+            var decrypt = tritimus.decryptSBlockTritimus(encrypt, key, jin);
+            Assert.Equal(input, decrypt);
+        }
+
         [Theory]
         [InlineData("ГОРАЦИО", "АТОЛ", 2, "ЬООЫ")]
         [InlineData("ГОРАЦИО", "АТОЛ", 3, "АУВО")]

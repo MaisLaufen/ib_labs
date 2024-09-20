@@ -16,10 +16,10 @@ static class Program
             string origAlphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ_";
             Tritimus tritimus = new Tritimus(origAlphabet, 8);
 
-            List<char> alp = tritimus.getModifiedAlphabet("ВЕРСАЛЬ");
+            //List<char> alp = tritimus.getModifiedAlphabet("ВЕРСАЛЬ");
 
             Console.WriteLine();
-            string b = tritimus.encryptSBlockTritimus("БЛОК", "ЗВЁЗДНАЯ_НОЧЬ", 11);
+            string b = tritimus.encryptSBlockTritimus("БЛОК", "ЗВЗЁДНАЯ_НОЧЬ", 11);
 
             Console.Write(b);
             

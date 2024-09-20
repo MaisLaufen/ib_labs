@@ -64,11 +64,11 @@ namespace inf_sec
         public List<char> shiftTable(List<char> alphabet, int k)
         {
             if (k <= 0) return alphabet;
-            string alpString = String.Join("", alphabet.ToArray());
+            string alpString = String.Join("", alphabet);
 
-            string s = alpString.Substring(31, 1);
-            string head = alpString.Substring(0, k - 1);
-            string tale = alpString.Substring(k - 1, 32 - k);
+            var s = alpString[^1];
+            var head = alpString.Substring(0, k - 1);
+            var tale = alpString.Substring(k - 1, 32 - k);
 
             return String.Concat(head, s, tale).ToList();
         }
@@ -111,10 +111,10 @@ namespace inf_sec
             }
 
             List<char> keyTable = getModifiedAlphabet(keyIn);
-            int jm = jIn % _alphLen;
+            int jm = (jIn + 1) % _alphLen ;
             if (jm > 0)
             {
-                for (int j = 0; j < jm; j++)
+                for (int j = 1; j < jm; j++)
                 {
                     keyTable = shiftTable(keyTable, j);
                 }
@@ -142,10 +142,10 @@ namespace inf_sec
             }
 
             List<char> keyTable = getModifiedAlphabet(keyIn);
-            int jm = jIn % _alphLen;
+            int jm = (jIn + 1) % _alphLen;
             if (jm > 0)
             {
-                for (int j = 0; j < jm; j++)
+                for (int j = 1; j < jm; j++)
                 {
                     keyTable = shiftTable(keyTable, j);
                 }
