@@ -17,13 +17,11 @@ namespace inf_sec
         {
             string result = new string(key.Where(c => _origAlph.Contains(c)).ToArray());
             List<char> newAlph = (result + _origAlph).Distinct().ToList();
-            Console.WriteLine(new string(newAlph.ToArray()));
             return newAlph;
         }
 
         public char encryptTheChar(char letter, List<char> alphabet)
         {
-            Console.WriteLine(_alphLen + " " + alphabet.Count());
             int index = alphabet.IndexOf(letter);
             index = (index + _shift) % _alphLen;
             return alphabet[index];
@@ -150,12 +148,6 @@ namespace inf_sec
                     keyTable = shiftTable(keyTable, j);
                 }
             }
-
-            foreach (var item in keyTable)
-            {
-                Console.Write(item);
-            }
-            Console.WriteLine();
 
             string output = "";
             for (int i = 0; i < 4; i++)
