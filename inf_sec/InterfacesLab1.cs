@@ -1,6 +1,6 @@
 namespace inf_sec
 {
-    interface IAlphabetOperations 
+    interface IAlphabetOperations
     {
         uint getBinaryCode(char letter);
         char getChar(uint binaryCode);
@@ -10,16 +10,26 @@ namespace inf_sec
         string arrayToText(uint[] arrIn);
     }
 
-    interface ITritimus 
+    interface IEncoder
     {
-        List<char> getModifiedAlphabet(string key);
+        //List<char> getModifiedAlphabet(string key);
         char encryptTheChar(char letter, List<char> alphabet);
         char decryptTheChar(char encryptedChar, List<char> alphabet);
         string encryptTheWord(string word, List<char> alphabet);
         string decryptTheWord(string encryptedWord, List<char> alphabet);
-        List<char> shiftTable(List<char> alphabet,int k);
+        List<char> getModifiedAlphabet(string key);
+        List<char> shiftTable(List<char> alphabet, int k);
+    }
+
+    interface IPolyTritimus
+    {
         string encryptPolyTritimus(string word, string key);
         string decryptPolyTritimus(string word, string key);
+
+    }
+
+    interface ISBlockTritimus
+    {
         string encryptSBlockTritimus(string blockIn, string keyIn, int jIn);
         string decryptSBlockTritimus(string blockIn, string keyIn, int jIn);
         string encryptImproveBlock(string blockIn, string keyIn, int jIn);

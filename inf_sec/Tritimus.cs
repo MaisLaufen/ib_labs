@@ -1,6 +1,6 @@
 namespace inf_sec
 {
-    public class Tritimus : ITritimus
+    public class Tritimus : IEncoder
     {
         string _origAlph = "";
         int _alphLen = 0;
@@ -70,6 +70,15 @@ namespace inf_sec
 
             return String.Concat(head, s, tale).ToList();
         }
+    }
+    public class PolyTritimus : Tritimus, IPolyTritimus
+    {
+        int _alphLen = 0;
+
+        public PolyTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
+        {
+            _alphLen = originAlphabet.Length;
+        }
 
         public string encryptPolyTritimus(string word, string key)
         {
@@ -99,6 +108,15 @@ namespace inf_sec
             }
 
             return new string(decryptedWord);
+        }
+    }
+
+    public class SBlockTritimus : PolyTritimus, ISBlockTritimus
+    {
+        int _alphLen = 0;
+        public SBlockTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
+        {
+            _alphLen = originAlphabet.Length;
         }
 
         public string encryptSBlockTritimus(string blockIn, string keyIn, int jIn)
