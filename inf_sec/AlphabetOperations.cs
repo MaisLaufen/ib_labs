@@ -1,20 +1,21 @@
 namespace inf_sec
 {
-    class Symbol
-    {
-        public char symbol;
-        public string bits;
-        public Symbol(char symbol, string bits)
-        {
-            this.symbol = symbol;
-            this.bits = bits;
-        }
-    }
+    //class Symbol
+    //{
+    //    public char symbol;
+    //    public string bits;
+    //    public Symbol(char symbol, string bits)
+    //    {
+    //        this.symbol = symbol;
+    //        this.bits = bits;
+    //    }
+    //}
 
     public class AlphabetOperations : IAlphabetOperations
     {
         static string alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ_";
         Tritimus tritimus = new Tritimus(alphabet, 8);
+
         public uint getBinaryCode(char letter) 
         {
             for (uint i = 0; i < alphabet.Length; i++)

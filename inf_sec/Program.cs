@@ -17,26 +17,38 @@ static class Program
         Tritimus tritimus = new Tritimus(origAlphabet, 8);
 
         List<char> modAlph = tritimus.getModifiedAlphabet("ПТЕРАДАКТИЛЬ");
+        Converter converter = new Converter();
 
-        string str1 = tritimus.encryptTheWord("СТРОКА", modAlph);
-        string str2 = tritimus.decryptTheWord(str1, modAlph);
-        Console.WriteLine("простой Тритимус: \nСТРОКА -> " + str1);
-        Console.WriteLine(str1 + " -> " + str2);
+        List<Char>[] seed1 = [
+            new List<Char>{'А', 'П', 'Ч', 'Х'},
+            new List<Char>{'Ч', '_', 'О', 'К'},
+            new List<Char>{'Ш', 'У', 'Р', 'А'}];
 
-        string str3 = tritimus.encryptPolyTritimus("ПИТБУЛЬ", "КЛЮЧ");
-        string str4 = tritimus.decryptPolyTritimus(str3, "КЛЮЧ");
-        Console.WriteLine("\nполи Тритимус: \nПИТБУЛЬ -> " + str3);
-        Console.WriteLine(str3 + " -> " + str4);
+        uint[][] set = [
+            new uint[] { 723482, 8677, 983609 },
+            new uint[] { 252564, 9109, 961193 },
+            new uint[] { 357630, 8971, 948209 }
+        ];
 
-        string str5 = tritimus.encryptSBlockTritimus("СПАМ", "КЕНТАВР", 123);
-        string str6 = tritimus.decryptSBlockTritimus(str5, "КЕНТАВР", 123);
-        Console.WriteLine("\ns-блок Тритимус: \nСПАМ -> " + str5);
-        Console.WriteLine(str5 + " -> " + str6);
+        BinOperations binOp = new BinOperations();
+        LCGwithHC hc = new LCGwithHC(new LCG());
+        ulong[] s1 = binOp.SeedToNums(seed1);
 
-        string str7 = tritimus.encryptSTritimusM("СЛОТ", "ОБЛАКА", 33);
-        string str8 = tritimus.decryptSTritimusM(str7, "ОБЛАКА", 33);
-        Console.WriteLine("\nулучшеный Тритимус: \nСЛОТ -> " + str7);
-        Console.WriteLine(str7 + " -> " + str8);
+        ulong[] ss = s1;
+        for (int i = 0; i < 10; i++)
+        {
+            ulong[] d = hc.Next(ss, set);
+            ss = [d[1], d[2], d[3]];
+
+            foreach (var item in converter.ConvertNumbToBlock(d[0]))
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine();
+        Console.WriteLine(hc.oneWayFuncSBlockTritimus("ВАСЯ", "АААА", 5, origAlphabet, 1));
 
         Console.Read();
     }
