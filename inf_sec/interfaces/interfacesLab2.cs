@@ -1,34 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace inf_sec
+﻿namespace inf_sec
 {
     interface IConverter
     {
         ulong ConvertBlockToNumb(List<Char> block);
-        List<Char> ConvertNumbToBlock(long number);
+        List<Char> ConvertNumbToBlock(ulong number);
         uint[] ConverNumbToBinaryArray(ulong number);
         ulong ConverBinaryArrayToNumb(uint[] binArray);
     }
 
     interface ILCG
     {
-        uint next();
+        ulong next();
     }
 
     interface ILCGwithHC
     {
-        public string next();
-        public string oneWayFuncSBlockTritimus(string block, string constant, uint roundAmount);
-        public uint CountUnityBits();
+        public ulong next();
     }
 
     interface ILCGWrapper
     {
-        public uint[] GenerateCodes();
+        public string GenerateCodes();
+        public void Init(string seeds, uint[][] coefficients);
     }
 
     interface ILCG_Modified

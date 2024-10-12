@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using inf_sec.lcg_generator;
+using inf_sec.tritimus_encode;
 
 namespace inf_sec;
 
@@ -30,25 +32,24 @@ static class Program
             new uint[] { 357630, 8971, 948209 }
         ];
 
-        BinOperations binOp = new BinOperations();
-        LCGwithHC hc = new LCGwithHC(new LCG());
-        ulong[] s1 = binOp.SeedToNums(seed1);
+        //LCGwithHC hc = new LCGwithHC(new LCG());
+        ulong[] s1 = Utils.SeedToNums(seed1);
 
-        ulong[] ss = s1;
-        for (int i = 0; i < 10; i++)
-        {
-            ulong[] d = hc.Next(ss, set);
-            ss = [d[1], d[2], d[3]];
+        // ulong[] ss = s1;
+        // for (int i = 0; i < 10; i++)
+        // {
+        //     ulong[] d = hc.Next(ss, set);
+        //     ss = [d[1], d[2], d[3]];
 
-            foreach (var item in converter.ConvertNumbToBlock(d[0]))
-            {
-                Console.Write(item);
-            }
-            Console.WriteLine();
-        }
+        //     foreach (var item in converter.ConvertNumbToBlock(d[0]))
+        //     {
+        //         Console.Write(item);
+        //     }
+        //     Console.WriteLine();
+        // }
 
         Console.WriteLine();
-        Console.WriteLine(hc.oneWayFuncSBlockTritimus("ВАСЯ", "АААА", 5, origAlphabet, 1));
+        //Console.WriteLine(hc.oneWayFuncSBlockTritimus("ВАСЯ", "АААА", 5, origAlphabet, 1));
 
         Console.Read();
     }

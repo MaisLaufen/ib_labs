@@ -1,4 +1,4 @@
-namespace inf_sec
+namespace inf_sec.tritimus_encode
 {
     //class Symbol
     //{
@@ -16,6 +16,11 @@ namespace inf_sec
         static string alphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ_";
         Tritimus tritimus = new Tritimus(alphabet, 8);
 
+        public string getAlphabet()
+        {
+            return alphabet;
+        }
+        
         public uint getBinaryCode(char letter) 
         {
             for (uint i = 0; i < alphabet.Length; i++)

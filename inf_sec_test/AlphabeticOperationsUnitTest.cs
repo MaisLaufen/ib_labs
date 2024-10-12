@@ -1,4 +1,5 @@
 using inf_sec;
+using inf_sec.tritimus_encode;
 
 namespace inf_sec_test
 {

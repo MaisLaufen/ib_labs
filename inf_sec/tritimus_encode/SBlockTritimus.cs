@@ -1,119 +1,9 @@
-namespace inf_sec
+namespace inf_sec.tritimus_encode
 {
-    public class Tritimus : IEncoder
-    {
-        string _origAlph = "";
-        int _alphLen = 0;
-        int _shift = 0;
-
-        public Tritimus(string originAlphabet, int shift)
-        {
-            _origAlph = originAlphabet;
-            _alphLen = originAlphabet.Length;
-            _shift = shift;
-        }
-
-        public List<char> getModifiedAlphabet(string key)
-        {
-            string result = new string(key.Where(c => _origAlph.Contains(c)).ToArray());
-            List<char> newAlph = (result + _origAlph).Distinct().ToList();
-            return newAlph;
-        }
-
-        public char encryptTheChar(char letter, List<char> alphabet)
-        {
-            int index = alphabet.IndexOf(letter);
-            index = (index + _shift) % _alphLen;
-            return alphabet[index];
-        }
-
-        public char decryptTheChar(char encryptedChar, List<char> alphabet)
-        {
-            int index = alphabet.IndexOf(encryptedChar);
-            index = (index - _shift) % _alphLen;
-            if (index < 0) index += _alphLen;
-            return alphabet[index];
-        }
-
-        public string encryptTheWord(string word, List<char> alphabet)
-        {
-            int wordLen = word.Length;
-            char[] encryptedWord = new char[wordLen];
-            for (int i = 0; i < wordLen; i++)
-            {
-                encryptedWord[i] = encryptTheChar(word[i], alphabet);
-            }
-
-            return new string(encryptedWord);
-        }
-
-        public string decryptTheWord(string word, List<char> alphabet)
-        {
-            int wordLen = word.Length;
-            char[] decryptedWord = new char[wordLen];
-            for (int i = 0; i < wordLen; i++)
-            {
-                decryptedWord[i] = decryptTheChar(word[i], alphabet);
-            }
-
-            return new string(decryptedWord);
-        }
-
-        public List<char> shiftTable(List<char> alphabet, int k)
-        {
-            if (k <= 0) return alphabet;
-            string alpString = String.Join("", alphabet);
-
-            var s = alpString[^1];
-            var head = alpString.Substring(0, k - 1);
-            var tale = alpString.Substring(k - 1, 32 - k);
-
-            return String.Concat(head, s, tale).ToList();
-        }
-    }
-    public class PolyTritimus : Tritimus, IPolyTritimus
-    {
-        int _alphLen = 0;
-
-        public PolyTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
-        {
-            _alphLen = originAlphabet.Length;
-        }
-
-        public string encryptPolyTritimus(string word, string key)
-        {
-            int wordLen = word.Length;
-            char[] encryptedWord = new char[wordLen];
-            List<char> modifAlph = getModifiedAlphabet(key);
-
-            for (int i = 0; i < wordLen; i++)
-            {
-                encryptedWord[i] = encryptTheChar(word[i], modifAlph);
-                modifAlph = shiftTable(modifAlph, ((i + 1) % wordLen) % _alphLen);
-            }
-
-            return new string(encryptedWord);
-        }
-
-        public string decryptPolyTritimus(string word, string key)
-        {
-            int wordLen = word.Length;
-            char[] decryptedWord = new char[wordLen];
-            List<char> modifAlph = getModifiedAlphabet(key);
-
-            for (int i = 0; i < wordLen; i++)
-            {
-                decryptedWord[i] = decryptTheChar(word[i], modifAlph);
-                modifAlph = shiftTable(modifAlph, ((i + 1) % wordLen) % _alphLen);
-            }
-
-            return new string(decryptedWord);
-        }
-    }
-
     public class SBlockTritimus : PolyTritimus, ISBlockTritimus
     {
         int _alphLen = 0;
+
         public SBlockTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
         {
             _alphLen = originAlphabet.Length;
@@ -127,7 +17,7 @@ namespace inf_sec
             }
 
             List<char> keyTable = getModifiedAlphabet(keyIn);
-            int jm = (jIn + 1) % _alphLen ;
+            int jm = (jIn + 1) % _alphLen;
             if (jm > 0)
             {
                 for (int j = 1; j < jm; j++)
