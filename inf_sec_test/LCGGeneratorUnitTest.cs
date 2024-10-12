@@ -129,4 +129,27 @@ public class LCGGeneratorUnitTest
         }
         Assert.Equal(expected, result);
     }
+
+    [Theory]
+    [InlineData("ААААББББВВВВГГГГ", 1, "ЯУЯЖРЦОДЦФЮМАЧХЭ")]
+    [InlineData("ААААББББВВВВГГГГ", 2, "ЮИВПЗЩИРХЖФВЛРПУ")]
+    [InlineData("ААААББББВВВВГГГГ", 3, "ЯАЛМБЧПЖЕИКЧУЙШ_")]
+    [InlineData("ВВВВГГГГААААББББ", 1, "ТМТЛЦПВЗТЦШФПДОЖ")]
+    [InlineData("ВВВВГГГГААААББББ", 2, "СДИБЕСТЛКПЬПУНАЛ")]
+    [InlineData("ВВВВГГГГААААББББ", 3, "ЧМТЮЩЧППЫЧЕАРЮЙЖ")]
+    [InlineData("ААААААААББББББББ", 1, "ИХЯМУНКТЕЭГЬФЕЦТ")]
+    [InlineData("ААААААААББББББББ", 2, "ЦТЮЕОБМЖХХЦИЫХЦХ")]
+    [InlineData("ААААААААББББББББ", 3, "ЗМ_ЩСФЕПДИХХСМЮД")]
+    public void HCLCGMWrapperTest(string seed, int steps, string expected)
+    {
+        var hclcgm = new HCLCGMWrapper();
+        hclcgm.Init(seed, Utils.getDefaultCoefficients());
+        string res = "";
+        for (int i = 0; i < steps; i++)
+        {
+            res = hclcgm.GenerateCodes();
+        }
+        Assert.Equal(expected, res);
+        
+    }
 }
