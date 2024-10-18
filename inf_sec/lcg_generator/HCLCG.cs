@@ -2,7 +2,7 @@ using inf_sec.tritimus_encode;
 
 namespace inf_sec.lcg_generator;
 
-public class HCLCG(LCG first, LCG second, LCG control) : ILCGwithHC
+public class HCLCG(LCG first, LCG second, LCG control) : ILCG
 {
     private LCG _first = first;
     private LCG _second = second;

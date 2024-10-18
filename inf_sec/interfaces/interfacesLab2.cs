@@ -13,10 +13,6 @@
         ulong next();
     }
 
-    interface ILCGwithHC
-    {
-        public ulong next();
-    }
 
     interface ILCGWrapper
     {

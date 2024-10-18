@@ -6,7 +6,8 @@ public class Converter : IConverter
 {
         public ulong ConvertBlockToNumb(List<Char> block)
         {
-            if (block.Count != 4) throw new Exception("input_error");
+            if (block.Count != 4) throw new ArgumentException("The count in block must be equals 4", nameof(block));
+
 
             AlphabetOperations op = new AlphabetOperations();
 
