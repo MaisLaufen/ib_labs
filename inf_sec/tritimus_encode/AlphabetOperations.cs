@@ -1,15 +1,5 @@
 namespace inf_sec.tritimus_encode
 {
-    //class Symbol
-    //{
-    //    public char symbol;
-    //    public string bits;
-    //    public Symbol(char symbol, string bits)
-    //    {
-    //        this.symbol = symbol;
-    //        this.bits = bits;
-    //    }
-    //}
 
     public class AlphabetOperations : IAlphabetOperations
     {

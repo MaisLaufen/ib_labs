@@ -1,23 +1,22 @@
 namespace inf_sec.tritimus_encode {
   public class PolyTritimus : Tritimus, IPolyTritimus
     {
-        int _alphLen = 0;
+        int _alphabetLength = 0;
 
         public PolyTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
         {
-            _alphLen = originAlphabet.Length;
+            _alphabetLength = originAlphabet.Length;
         }
 
         public string encryptPolyTritimus(string word, string key)
         {
-            int wordLen = word.Length;
-            char[] encryptedWord = new char[wordLen];
+            char[] encryptedWord = new char[word.Length];
             List<char> modifAlph = getModifiedAlphabet(key);
 
-            for (int i = 0; i < wordLen; i++)
+            for (int i = 0; i < word.Length; i++)
             {
                 encryptedWord[i] = encryptTheChar(word[i], modifAlph);
-                modifAlph = shiftTable(modifAlph, ((i + 1) % wordLen) % _alphLen);
+                modifAlph = shiftTable(modifAlph, ((i + 1) % word.Length) % _alphabetLength);
             }
 
             return new string(encryptedWord);
@@ -25,14 +24,13 @@ namespace inf_sec.tritimus_encode {
 
         public string decryptPolyTritimus(string word, string key)
         {
-            int wordLen = word.Length;
-            char[] decryptedWord = new char[wordLen];
+            char[] decryptedWord = new char[word.Length];
             List<char> modifAlph = getModifiedAlphabet(key);
 
-            for (int i = 0; i < wordLen; i++)
+            for (int i = 0; i < word.Length; i++)
             {
                 decryptedWord[i] = decryptTheChar(word[i], modifAlph);
-                modifAlph = shiftTable(modifAlph, ((i + 1) % wordLen) % _alphLen);
+                modifAlph = shiftTable(modifAlph, ((i + 1) % word.Length) % _alphabetLength);
             }
 
             return new string(decryptedWord);

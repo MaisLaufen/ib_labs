@@ -21,7 +21,7 @@ static class Program
         List<char> modAlph = tritimus.getModifiedAlphabet("ПТЕРАДАКТИЛЬ");
         Converter converter = new Converter();
 
-        List<Char>[] seed1 = [
+        List<Char>[] seed = [
             new List<Char>{'А', 'П', 'Ч', 'Х'},
             new List<Char>{'Ч', '_', 'О', 'К'},
             new List<Char>{'Ш', 'У', 'Р', 'А'}];
@@ -33,7 +33,7 @@ static class Program
         ];
 
         //LCGwithHC hc = new LCGwithHC(new LCG());
-        ulong[] s1 = Utils.SeedToNums(seed1);
+        ulong[] s1 = Utils.SeedToNums(seed);
 
         // ulong[] ss = s1;
         // for (int i = 0; i < 10; i++)

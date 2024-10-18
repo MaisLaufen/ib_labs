@@ -2,44 +2,43 @@ namespace inf_sec.tritimus_encode {
     
   public class Tritimus : IEncoder
       {
-          string _origAlph = "";
-          int _alphLen = 0;
-          int _shift = 0;
+          protected string _originalAlhnabet;
+          protected int _alphabetLength;
+          protected int _shift;
 
           public Tritimus(string originAlphabet, int shift)
           {
-              _origAlph = originAlphabet;
-              _alphLen = originAlphabet.Length;
+              _originalAlhnabet = originAlphabet;
+              _alphabetLength = originAlphabet.Length;
               _shift = shift;
           }
 
           public List<char> getModifiedAlphabet(string key)
           {
-              string result = new string(key.Where(c => _origAlph.Contains(c)).ToArray());
-              List<char> newAlph = (result + _origAlph).Distinct().ToList();
+              string result = new string(key.Where(c => _originalAlhnabet.Contains(c)).ToArray());
+              List<char> newAlph = (result + _originalAlhnabet).Distinct().ToList();
               return newAlph;
           }
 
           public char encryptTheChar(char letter, List<char> alphabet)
           {
               int index = alphabet.IndexOf(letter);
-              index = (index + _shift) % _alphLen;
+              index = (index + _shift) % _alphabetLength;
               return alphabet[index];
           }
 
           public char decryptTheChar(char encryptedChar, List<char> alphabet)
           {
               int index = alphabet.IndexOf(encryptedChar);
-              index = (index - _shift) % _alphLen;
-              if (index < 0) index += _alphLen;
+              index = (index - _shift) % _alphabetLength;
+              if (index < 0) index += _alphabetLength;
               return alphabet[index];
           }
 
           public string encryptTheWord(string word, List<char> alphabet)
           {
-              int wordLen = word.Length;
-              char[] encryptedWord = new char[wordLen];
-              for (int i = 0; i < wordLen; i++)
+              char[] encryptedWord = new char[word.Length];
+              for (int i = 0; i < word.Length; i++)
               {
                   encryptedWord[i] = encryptTheChar(word[i], alphabet);
               }
@@ -49,9 +48,8 @@ namespace inf_sec.tritimus_encode {
 
           public string decryptTheWord(string word, List<char> alphabet)
           {
-              int wordLen = word.Length;
-              char[] decryptedWord = new char[wordLen];
-              for (int i = 0; i < wordLen; i++)
+              char[] decryptedWord = new char[word.Length];
+              for (int i = 0; i < word.Length; i++)
               {
                   decryptedWord[i] = decryptTheChar(word[i], alphabet);
               }

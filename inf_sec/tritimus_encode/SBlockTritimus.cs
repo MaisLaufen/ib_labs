@@ -2,11 +2,9 @@ namespace inf_sec.tritimus_encode
 {
     public class SBlockTritimus : PolyTritimus, ISBlockTritimus
     {
-        int _alphLen = 0;
 
         public SBlockTritimus(string originAlphabet, int shift) : base(originAlphabet, shift)
         {
-            _alphLen = originAlphabet.Length;
         }
 
         public string encryptSBlockTritimus(string blockIn, string keyIn, int jIn)
@@ -17,7 +15,7 @@ namespace inf_sec.tritimus_encode
             }
 
             List<char> keyTable = getModifiedAlphabet(keyIn);
-            int jm = (jIn + 1) % _alphLen;
+            int jm = (jIn + 1) % _alphabetLength;
             if (jm > 0)
             {
                 for (int j = 1; j < jm; j++)
@@ -48,7 +46,7 @@ namespace inf_sec.tritimus_encode
             }
 
             List<char> keyTable = getModifiedAlphabet(keyIn);
-            int jm = (jIn + 1) % _alphLen;
+            int jm = (jIn + 1) % _alphabetLength;
             if (jm > 0)
             {
                 for (int j = 1; j < jm; j++)
