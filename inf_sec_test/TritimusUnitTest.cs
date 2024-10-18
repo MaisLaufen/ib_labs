@@ -72,8 +72,8 @@ namespace inf_sec_test
         }
 
         [Theory]
-        //[InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БЛОК", 11, "МФЙУ")]
-        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БРО", 11, "input_error")]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БЛОК", 11, "ПЦКХ")]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БРО", 11, "input_error")]
         public void EncryptSBlockTritimus(string key, string input, int jin, string expected)
         {
             var tritimus = new SBlockTritimus(origAlphabet, SHIFT);
@@ -82,9 +82,9 @@ namespace inf_sec_test
         }
         
         [Theory]
-        //[InlineData("ЗВЁЗДНАЯ_НОЧЬ", "МФЙУ", 11, "БЛОК")]
-        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "МФЙУ", 3, "БКОЙ")]    
-        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "ПЦКХ", 11, "БЛОК")]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "ПЦКХ", 3, "БМОЛ")]    
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "input_error", 11, "input_error")]
         public void DecryptSBlockTritimus(string key, string input, int jin, string expected)
         {
             var tritimus = new SBlockTritimus(origAlphabet, SHIFT);
@@ -93,7 +93,7 @@ namespace inf_sec_test
         }
 
         [Theory]
-        [InlineData("ЗВЁЗДНАЯ_НОЧЬ", "БЛОК", 3 )]
+        [InlineData("ЗВЕЗДНАЯ_НОЧЬ", "БЛОК", 3 )]
         [InlineData("ФЫВЦУ", "БЛОК", 5 )]
         public void EncryptDecryptSBlockTritimus(string key, string input, int jin)
         {
@@ -195,13 +195,12 @@ namespace inf_sec_test
             Assert.Equal("ФЕЬЫ", tst2);
             Assert.Equal("МЕЖЫ", tst3);
             
-            /* В методичке скипнуто (код из цезаря в блоке тритимуса)  */
-            //tste1 = tritimus.encryptSTritimusM(block_in1, key1, 0);
-            //tste2 = tritimus.encryptSTritimusM(block_in2, key1, 0);
-            //tste3 = tritimus.encryptSTritimusM(block_in5, key1, 0);
-            //Assert.Equal("ЭЕМЗ", tste1);
-            //Assert.Equal("СЕБЭ", tste2);
-            //Assert.Equal("ФЕМЗ", tste3);
+            tste1 = tritimus.encryptSTritimusM(block_in1, key1, 0);
+            tste2 = tritimus.encryptSTritimusM(block_in2, key1, 0);
+            tste3 = tritimus.encryptSTritimusM(block_in5, key1, 0);
+            Assert.Equal("ЭЕМЗ", tste1);
+            Assert.Equal("СЕБЭ", tste2);
+            Assert.Equal("ФЕМЗ", tste3);
         }
     }
 }
